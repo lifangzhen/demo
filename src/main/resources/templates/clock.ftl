@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<button>打卡开始</button>
-<button>打卡结束</button>
+<button id="start">打卡开始</button>
+<button id="end">打卡结束</button>
 
 <table>
     <tr>
@@ -38,4 +38,13 @@
     </#list>
 </table>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js">
+
+    <script>
+    $("#start").click(function(){
+        $.get("/start.json",function(data,status){
+            alert(data);
+        });
+    });
+    </script>
 </html>
