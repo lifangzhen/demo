@@ -33,7 +33,7 @@ public class ClockController {
 
     @RequestMapping("/start.json")
     @ResponseBody
-    public void start(){
+    public String start(){
         //获取今日的日期
         Date dt = new Date();
         SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
@@ -56,23 +56,39 @@ public class ClockController {
             //从start2开始判断，哪个为空，说明就到哪次了，
             // 比如getStart2不等于null的话，说明已经有数据了，肯定已经最少是第三次打卡了
             if (clock.getStart2()==null){
+                if (clock.getEnd1()==null){
+                    return "第一次打卡还没结束呢";
+                }
                 clock.setStart2(time);
             }else if (clock.getStart3()==null){
+                if (clock.getEnd2()==null){
+                    return "第二次打卡还没结束呢";
+                }
                 clock.setStart3(time);
             }else if (clock.getStart4()==null){
+                if (clock.getEnd3()==null){
+                    return "第三次打卡还没结束呢";
+                }
                 clock.setStart4(time);
             }else if (clock.getStart5()==null){
+                if (clock.getEnd4()==null){
+                    return "第四次打卡还没结束呢";
+                }
                 clock.setStart5(time);
             }else{
+                if (clock.getEnd5()==null){
+                    return "第五次打卡还没结束呢";
+                }
                 clock.setStart6(time);
             }
             clockDao.save(clock);
         }
+        return "打卡成功";
     }
 
     @RequestMapping("/end.json")
     @ResponseBody
-    public void end(){
+    public String end(){
         //获取今日的日期
         Date dt = new Date();
         SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,21 +104,41 @@ public class ClockController {
             //理论上结束的时候不可能存在空数据
             //若存在的话，说明还没点开始呢
             //这里应该报错，告诉点击的人还没点开始呢
+            return "还没开始呢";
         }else {
             if (clock.getEnd1()==null){
+                if (clock.getStart1()==null){
+                    return "第一次打卡还没开始";
+                }
                 clock.setEnd1(time);
             }else if (clock.getEnd2()==null){
+                if (clock.getStart2()==null){
+                    return "第二次打卡还没开始";
+                }
                 clock.setEnd2(time);
             }else if (clock.getEnd3()==null){
+                if (clock.getStart3()==null){
+                    return "第三次打卡还没开始";
+                }
                 clock.setEnd3(time);
             }else if (clock.getEnd4()==null){
+                if (clock.getStart4()==null){
+                    return "第四次打卡还没开始";
+                }
                 clock.setEnd4(time);
             }else if (clock.getEnd5()==null){
+                if (clock.getStart5()==null){
+                    return "第五次打卡还没开始";
+                }
                 clock.setEnd5(time);
             }else {
+                if (clock.getStart6()==null){
+                    return "第六次打卡还没开始";
+                }
                 clock.setEnd6(time);
             }
             clockDao.save(clock);
         }
+        return "打卡结束";
     }
 }

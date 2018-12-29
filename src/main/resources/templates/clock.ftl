@@ -72,7 +72,7 @@
                 "type" : "get",
                 "data" : null,
                 "success" : function(dat) {
-                    alert("打卡成功")
+                    alert(dat)
                 },
                 "error" : function(req, st, err) {
                     alert("打卡请求失败："+err);
@@ -86,7 +86,8 @@
                 "type" : "get",
                 "data" : null,
                 "success" : function(dat) {
-                    alert("打卡结束")
+                    alert(dat)
+                    window.location.replace("/clock.htm");
                 },
                 "error" : function(req, st, err) {
                     alert("打卡结束请求失败："+err);
