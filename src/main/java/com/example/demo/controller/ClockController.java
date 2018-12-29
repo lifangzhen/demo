@@ -26,15 +26,6 @@ public class ClockController {
     @RequestMapping("/clock.htm")
     public ModelAndView clock(){
         List<Clock> list = clockDao.findAll();
-        Clock clock = new Clock();
-        clock.setId("2018-12-29");
-        clock.setStart1("8:00");
-        clock.setEnd1("9:00");
-        clock.setStart2("10:00");
-        clock.setEnd2("11:00");
-        clock.setStart3("13:00");
-        clock.setEnd3("18:00");
-        list.add(clock);
         ModelAndView mav = new ModelAndView("/clock");
         mav.addObject("list", list);
         return mav;
