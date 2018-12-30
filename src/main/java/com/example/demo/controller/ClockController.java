@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.ClockDao;
 import com.example.demo.model.Clock;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.dao.ClockDao;
 import com.example.demo.model.Clock;
@@ -16,11 +17,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by 26949 on 2018/12/29.
  */
 @Controller
+@Slf4j
 public class ClockController {
     @Autowired private ClockDao clockDao;
     @RequestMapping("/clock.htm")
@@ -37,11 +40,14 @@ public class ClockController {
         //获取今日的日期
         Date dt = new Date();
         SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
+        day.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         String today=day.format(dt);
 
         //获取当前的时间
         SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm");
+        timeformat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         String time=timeformat.format(dt);
+        log.info("+++++++++++++++++++++++++++current time is:{}", time);
 
         //根据今日的日期查出今日是否已经打过卡
         Clock clock = clockDao.findById(today).orElse(null);
@@ -92,10 +98,12 @@ public class ClockController {
         //获取今日的日期
         Date dt = new Date();
         SimpleDateFormat day = new SimpleDateFormat("yyyy-MM-dd");
+        day.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         String today=day.format(dt);
 
         //获取当前的时间
         SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm");
+        timeformat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         String time=timeformat.format(dt);
 
         //根据今日的日期查出今日是否已经打过卡
