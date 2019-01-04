@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ClockDao">
+    <resultMap id="clockMap" type="com.example.demo.model.Clock">
+        <id property="id" column="id" />
+        <result property="start1" column="start1" />
+        <result property="end1" column="end1" />
+        <result property="start2" column="start2" />
+        <result property="end2" column="end2" />
+        <result property="start3" column="start3" />
+        <result property="end3" column="end3" />
+        <result property="start4" column="start4" />
+        <result property="end4" column="end4" />
+        <result property="start5" column="start5" />
+        <result property="end5" column="end5" />
+        <result property="start6" column="start6" />
+        <result property="end6" column="end6" />
+    </resultMap>
+
+    <select id="list" resultMap="clockMap">
+        SELECT * FROM clock;
+    </select>
+</mapper>

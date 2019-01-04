@@ -25,6 +25,7 @@
         <td>时段四</td>
         <td>时段五</td>
         <td>时段六</td>
+        <td>总计</td>
     </tr>
     <#list list as clock>
         <tr>
@@ -59,6 +60,7 @@
             <#else>
                 <td>----</td>
             </#if>
+            <td>${clock.total}</td>
         </tr>
     </#list>
 </table>
