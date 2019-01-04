@@ -114,7 +114,7 @@ public class ClockController {
                 }
                 Long hour = times/(60*60*1000);
                 Long minute = (times-hour*60*60*1000)/(60*1000);
-                dto.setTotal(hour+"h"+minute+"min");
+                dto.setTotal(hour+" 小时 "+minute+" 分");
                 relist.add(dto);
             }
         }
